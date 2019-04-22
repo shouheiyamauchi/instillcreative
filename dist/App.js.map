@@ -1,1 +1,1 @@
-{"version":3,"file":"App.js","sourceRoot":"","sources":["../App.tsx"],"names":[],"mappings":"AAAA,OAAO,GAAG,MAAM,yBAAyB,CAAA;AAEzC,eAAe,GAAG,CAAA","sourcesContent":["import App from '~src/containers/App/App'\n\nexport default App\n"]}
+{"version":3,"file":"App.js","sourceRoot":"","sources":["../App.tsx"],"names":[],"mappings":"AAAA,OAAO,GAAG,MAAM,yBAAyB,CAAC;AAE1C,eAAe,GAAG,CAAC","sourcesContent":["import App from \"~src/containers/App/App\";\n\nexport default App;\n"]}
