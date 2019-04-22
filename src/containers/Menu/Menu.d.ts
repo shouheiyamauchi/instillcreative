@@ -1,6 +1,6 @@
-import { Animated } from "react-native";
+import { Animated } from 'react-native'
 
 export interface MenuProps {
-  menuBounceValue: Animated.Value;
-  toggleMenu: () => void;
+  menuBounceValue: Animated.Value
+  toggleMenu: () => void
 }
