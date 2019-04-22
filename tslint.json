@@ -14,7 +14,7 @@
         }
       },
     "no-console": false,
-    "no-implicit-dependencies": [true, ["~assets", "~src"]],
+    "no-implicit-dependencies": [false],
     "no-submodule-imports": [false],
     "semicolon": [true, "never"]
   }
