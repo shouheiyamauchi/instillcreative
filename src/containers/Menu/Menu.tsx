@@ -1,22 +1,38 @@
 import React from 'react'
 import { Animated, Text } from 'react-native'
 
-import { MenuProps } from './Menu.d'
 import * as s from './Menu.styled'
 
-class Menu extends React.Component<MenuProps> {
+class Menu extends React.Component<{
+  menuItems: Array<{
+    name: string
+    onPress: () => void
+  }>
+  menuBounceValue: Animated.Value
+  toggleMenu: () => void
+}> {
+  public closeMenu = (onClick: () => void) => () => {
+    onClick()
+    this.props.toggleMenu()
+  }
+
   public render() {
-    const { menuBounceValue, toggleMenu } = this.props
+    const { menuBounceValue, menuItems, toggleMenu } = this.props
 
     return (
       <Animated.View style={{ ...s.style.overlay, height: menuBounceValue }}>
         <Text style={s.style.closeButton} onPress={toggleMenu}>
           ×
         </Text>
-        <Text style={s.style.menuItem}>.design</Text>
-        <Text style={s.style.menuItem}>.illustration</Text>
-        <Text style={s.style.menuItem}>.about</Text>
-        <Text style={s.style.menuItem}>.contact</Text>
+        {menuItems.map((item) => (
+          <Text
+            key={item.name}
+            onPress={this.closeMenu(item.onPress)}
+            style={s.style.menuItem}
+          >
+            {item.name}
+          </Text>
+        ))}
       </Animated.View>
     )
   }
