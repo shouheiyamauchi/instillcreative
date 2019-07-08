@@ -12,7 +12,6 @@ class Project extends React.Component<{
 }> {
   public render() {
     const projectID = this.props.navigation.getParam('projectID')
-    // this.props.navigation.getParam('projectID')
 
     return (
       <AppContainer navigation={this.props.navigation}>
@@ -23,11 +22,11 @@ class Project extends React.Component<{
           <Text style={s.style.description}>
             {projectsData.projects[projectID].description}
           </Text>
-          {projectsData.projects[projectID].items.map((item) => {
+          {projectsData.projects[projectID].items.map((item, index) => {
             if (item.type === projectsData.ItemType.IMAGE) {
               return (
                 <Image
-                  key={item.value}
+                  key={`project-${projectID}-${index}`}
                   source={item.value}
                   style={s.itemImage({ source: item.value }).style}
                 />

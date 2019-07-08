@@ -3,6 +3,7 @@ import {
   Animated,
   Dimensions,
   Image,
+  Linking,
   ScrollView,
   Text,
   TouchableNativeFeedback,
@@ -28,25 +29,19 @@ class AppContainer extends React.Component<{
   public menuItems = [
     {
       name: '.design',
-      onPress: () =>
-        this.props.navigation.navigate('Project', { projectID: '.design' })
+      onPress: () => this.props.navigation.navigate('Home')
     },
     {
       name: '.illustration',
-      onPress: () =>
-        this.props.navigation.navigate('Project', {
-          projectID: '.illustration'
-        })
+      onPress: () => this.props.navigation.navigate('Illustrations')
     },
     {
       name: '.about',
-      onPress: () =>
-        this.props.navigation.navigate('Project', { projectID: '.about' })
+      onPress: () => this.props.navigation.navigate('About')
     },
     {
       name: '.contact',
-      onPress: () =>
-        this.props.navigation.navigate('Project', { projectID: '.contact' })
+      onPress: () => this.props.navigation.navigate('Contact')
     }
   ]
 
@@ -62,34 +57,61 @@ class AppContainer extends React.Component<{
     }).start()
   }
 
+  public openURL = (url: string) => () => {
+    Linking.openURL(url)
+  }
+
   public render() {
     return (
-      <ScrollView>
-        <View style={s.style.navBar}>
-          <Image source={logo} style={s.logo({ source: logo }).style} />
-          <View style={s.style.hamburgerContainer}>
-            <TouchableNativeFeedback onPress={this.toggleMenu}>
-              <Icon name="bars" size={25} />
-            </TouchableNativeFeedback>
+      <>
+        <ScrollView>
+          <View style={s.style.navBar}>
+            <Image source={logo} style={s.logo({ source: logo }).style} />
+            <View style={s.style.hamburgerContainer}>
+              <TouchableNativeFeedback onPress={this.toggleMenu}>
+                <Icon name="bars" size={25} />
+              </TouchableNativeFeedback>
+            </View>
+            <View style={s.style.icons}>
+              <Icon
+                name="instagram"
+                size={30}
+                color={colors.SOCIAL_ICONS}
+                onPress={this.openURL(
+                  'https://www.instagram.com/inst.ill_creative/'
+                )}
+              />
+              <Icon
+                name="facebook"
+                size={30}
+                color={colors.SOCIAL_ICONS}
+                onPress={this.openURL(
+                  'https://www.facebook.com/inst.illcreative/'
+                )}
+              />
+              <Icon
+                name="linkedin"
+                size={30}
+                color={colors.SOCIAL_ICONS}
+                onPress={this.openURL(
+                  'https://www.linkedin.com/in/daniel-goh-b2398341/'
+                )}
+              />
+            </View>
           </View>
-          <View style={s.style.icons}>
-            <Icon name="instagram" size={30} color={colors.SOCIAL_ICONS} />
-            <Icon name="facebook" size={30} color={colors.SOCIAL_ICONS} />
-            <Icon name="linkedin" size={30} color={colors.SOCIAL_ICONS} />
+          {this.props.children}
+          <View style={s.style.footer}>
+            <Text style={s.style.footerText}>
+              {`© Copyright\nInst.ill Creative ${new Date().getFullYear()}`}
+            </Text>
           </View>
-        </View>
-        {this.props.children}
-        <View style={s.style.footer}>
-          <Text style={s.style.footerText}>
-            {'© Copyright\nInst.ill Creative 2019'}
-          </Text>
-        </View>
+        </ScrollView>
         <Menu
           menuBounceValue={this.state.menuBounceValue}
           menuItems={this.menuItems}
           toggleMenu={this.toggleMenu}
         />
-      </ScrollView>
+      </>
     )
   }
 }

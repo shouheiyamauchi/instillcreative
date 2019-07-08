@@ -1,5 +1,5 @@
 {
-  "name": "dg",
+  "name": "dg2",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,7 +10,8 @@
     "prettier": "prettier src/**/*.{ts,tsx}",
     "prettier:fix": "npm run prettier -- --write",
     "lint": "tslint -p tsconfig.json -c tslint.json",
-    "check": "npm run build:ts && npm run lint"
+    "check": "npm run build:ts && npm run lint",
+    "clean": "watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-* && rm -rf node_modules/ && yarn install && npm start -- --reset-cache"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -27,7 +28,9 @@
   "dependencies": {
     "react": "16.6.1",
     "react-native": "0.57.7",
+    "react-native-gallery-swiper": "^1.22.0",
     "react-native-gesture-handler": "^1.1.0",
+    "react-native-image-gallery": "^2.1.5",
     "react-native-vector-icons": "^6.1.0",
     "react-navigation": "^3.8.1",
     "react-spring": "^8.0.19"

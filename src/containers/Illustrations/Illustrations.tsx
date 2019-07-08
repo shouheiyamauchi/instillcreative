@@ -1,34 +1,19 @@
 import * as React from 'react'
 import { Image, TouchableOpacity, View } from 'react-native'
 import { NavigationScreenProp } from 'react-navigation'
-import { projects } from '~src/data/projects'
+import { illustrations } from '~src/data/illustrations'
 
 import AppContainer from '../AppContainer/AppContainer'
+import * as s from '../Home/Home.styled'
 
-import * as s from './Home.styled'
+const column1 = ['popsugar', 'bws', 'dragoon']
+const column2 = ['bitterology', 'digitisation', 'kuLion', 'kotaku']
 
-const column1 = [
-  'hp',
-  'allure',
-  'commercial',
-  'slideSpace',
-  'uvPro',
-  'bitterology'
-]
-const column2 = [
-  'sibc',
-  'melanoma',
-  'allureRefresh',
-  'allureSocial',
-  'businessInsider',
-  'dnWedding'
-]
-
-class Home extends React.Component<{
+class Illustration extends React.Component<{
   navigation: NavigationScreenProp<any, any>
 }> {
-  public navigateToProject = (projectID: string) => () => {
-    this.props.navigation.navigate('Project', { projectID })
+  public navigateToIllustration = (illustrationID: string) => () => {
+    this.props.navigation.navigate('Gallery', { illustrationID })
   }
 
   public render() {
@@ -38,15 +23,15 @@ class Home extends React.Component<{
           <View style={s.style.column}>
             {column1.map((item) => (
               <TouchableOpacity
-                key={`home-${item}`}
-                onPress={this.navigateToProject(item)}
+                key={`illustrations-${item}`}
+                onPress={this.navigateToIllustration(item)}
               >
                 <Image
                   key={item}
-                  source={projects[item].cover}
+                  source={illustrations[item].cover}
                   style={
                     s.portfolioImage({
-                      source: projects[item].cover
+                      source: illustrations[item].cover
                     }).style
                   }
                 />
@@ -56,15 +41,15 @@ class Home extends React.Component<{
           <View style={s.style.column}>
             {column2.map((item) => (
               <TouchableOpacity
-                key={`home-${item}`}
-                onPress={this.navigateToProject(item)}
+                key={`illustrations-${item}`}
+                onPress={this.navigateToIllustration(item)}
               >
                 <Image
                   key={item}
-                  source={projects[item].cover}
+                  source={illustrations[item].cover}
                   style={
                     s.portfolioImage({
-                      source: projects[item].cover
+                      source: illustrations[item].cover
                     }).style
                   }
                 />
@@ -77,4 +62,4 @@ class Home extends React.Component<{
   }
 }
 
-export default Home
+export default Illustration

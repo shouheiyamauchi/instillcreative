@@ -26,7 +26,7 @@ class Menu extends React.Component<{
         </Text>
         {menuItems.map((item) => (
           <Text
-            key={item.name}
+            key={`menu-${item.name}`}
             onPress={this.closeMenu(item.onPress)}
             style={s.style.menuItem}
           >
